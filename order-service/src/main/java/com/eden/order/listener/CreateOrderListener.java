@@ -1,13 +1,12 @@
 package com.eden.order.listener;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.eden.SnowFlakeGenerator;
 import com.eden.order.domain.OrderParam;
 import com.eden.order.enums.OrderStatusEnum;
 import com.eden.order.mapper.TOrderMapper;
 import com.eden.order.model.TOrder;
+import com.eden.order.utils.SnowFlakeGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;

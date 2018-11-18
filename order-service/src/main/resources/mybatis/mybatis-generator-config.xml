@@ -22,7 +22,7 @@
         </javaTypeResolver>
         
         <!-- 数据模型配置 -->
-        <javaModelGenerator targetPackage="com.eden.order.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.eden.order.orderintf.domain.model" targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>

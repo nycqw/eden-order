@@ -72,9 +72,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.eden</groupId>
-            <artifactId>id-generator</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.eden.order</groupId>
+            <artifactId>order-intf</artifactId>
         </dependency>
     </dependencies>
 
