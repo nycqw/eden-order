@@ -9,7 +9,6 @@
     <modules>
         <module>order-service</module>
         <module>order-web</module>
-        <module>order-intf</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -69,8 +68,6 @@
                 <configuration>
                     <!-- 指定子模块找不到main方法的问题，指定该Main Class为全局的唯一入口 -->
                     <mainClass>com.eden.order.OrderWebApplication</mainClass>
-                    <!-- 解决子模块程序包不存在的问题 -->
-                    <classifier>exec</classifier>
                     <layout>ZIP</layout>
                 </configuration>
                 <executions>

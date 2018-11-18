@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.eden.order.mapper.TOrderMapper" >
-  <resultMap id="BaseResultMap" type="com.eden.order.orderintf.domain.model.TOrder" >
+  <resultMap id="BaseResultMap" type="com.eden.order.domain.model.TOrder" >
     <id column="ID" property="id" jdbcType="BIGINT" />
     <result column="ORDER_ID" property="orderId" jdbcType="BIGINT" />
     <result column="ORDER_STATUS" property="orderStatus" jdbcType="INTEGER" />
@@ -28,7 +28,7 @@
     delete from t_order
     where ID = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.eden.order.orderintf.domain.model.TOrder" >
+  <insert id="insert" parameterType="com.eden.order.domain.model.TOrder" >
     insert into t_order (ID, ORDER_ID, ORDER_STATUS, 
       USER_ID, SERIAL_NUMBER, product_id, 
       price, purchase_amount, mailing_address, 
@@ -38,7 +38,7 @@
       #{price,jdbcType=DOUBLE}, #{purchaseAmount,jdbcType=INTEGER}, #{mailingAddress,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.eden.order.orderintf.domain.model.TOrder" >
+  <insert id="insertSelective" parameterType="com.eden.order.domain.model.TOrder" >
     insert into t_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.eden.order.orderintf.domain.model.TOrder" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.eden.order.domain.model.TOrder" >
     update t_order
     <set >
       <if test="orderId != null" >
@@ -147,7 +147,7 @@
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.eden.order.orderintf.domain.model.TOrder" >
+  <update id="updateByPrimaryKey" parameterType="com.eden.order.domain.model.TOrder" >
     update t_order
     set ORDER_ID = #{orderId,jdbcType=BIGINT},
       ORDER_STATUS = #{orderStatus,jdbcType=INTEGER},
