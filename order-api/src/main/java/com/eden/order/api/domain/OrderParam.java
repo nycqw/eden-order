@@ -1,4 +1,4 @@
-package com.eden.order.domain;
+package com.eden.order.api.domain;
 
 
 import lombok.Getter;

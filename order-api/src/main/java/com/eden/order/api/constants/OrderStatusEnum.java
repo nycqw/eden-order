@@ -1,4 +1,4 @@
-package com.eden.order.enums;
+package com.eden.order.api.constants;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

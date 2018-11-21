@@ -23,8 +23,9 @@
     <dependencies>
         <dependency>
             <groupId>com.eden.order</groupId>
-            <artifactId>order-intf</artifactId>
+            <artifactId>order-api</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -75,10 +76,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.eden.order</groupId>
-            <artifactId>order-intf</artifactId>
         </dependency>
     </dependencies>
 

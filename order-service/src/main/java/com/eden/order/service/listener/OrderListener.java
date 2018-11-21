@@ -1,11 +1,12 @@
-package com.eden.order.listener;
+package com.eden.order.service.listener;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.eden.order.domain.OrderParam;
-import com.eden.order.enums.OrderStatusEnum;
-import com.eden.order.mapper.TOrderMapper;
-import com.eden.order.model.TOrder;
+import com.eden.order.api.constants.OrderStatusEnum;
+import com.eden.order.api.domain.OrderParam;
+import com.eden.order.api.constants.MQConstants;
+import com.eden.order.service.mapper.TOrderMapper;
+import com.eden.order.api.model.TOrder;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -26,19 +27,19 @@ import java.util.Date;
  */
 @Component
 @Slf4j
-public class CreateOrderListener {
+public class OrderListener {
 
     @Autowired
     private TOrderMapper orderMapper;
 
     @RabbitListener(bindings = @QueueBinding(
-            key = RabbitConstants.ORDER_CREATE_KEY,
-            value = @Queue(value = RabbitConstants.ORDER_CREATE_QUEUE),
-            exchange = @Exchange(value = RabbitConstants.ORDER_CREATE_EXCHANGE, type = "topic")
+            key = MQConstants.ORDER_CREATE_KEY,
+            value = @Queue(value = MQConstants.ORDER_CREATE_QUEUE, durable = "true"),
+            exchange = @Exchange(value = MQConstants.ORDER_CREATE_EXCHANGE, type = "topic")
     ))
     public void createOrder(String msg, Channel channel, Message message) {
         try {
-            log.info("listener success, message:{}==========================", message);
+            log.info("listener success, message:{}", message);
             OrderParam orderParam = JSON.parseObject(msg, new TypeReference<OrderParam>() {});
             TOrder orderInfo = new TOrder();
             orderInfo.setUserId(orderParam.getUserId());

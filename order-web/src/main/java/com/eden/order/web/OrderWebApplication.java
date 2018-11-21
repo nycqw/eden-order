@@ -1,4 +1,4 @@
-package com.eden.order;
+package com.eden.order.web;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.mybatis.spring.annotation.MapperScan;
