@@ -1,12 +1,12 @@
-package com.eden.order.service.listener;
+package com.eden.order.listener;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.eden.order.api.constants.OrderStatusEnum;
-import com.eden.order.api.domain.OrderParam;
-import com.eden.order.api.constants.MQConstants;
-import com.eden.order.service.mapper.TOrderMapper;
-import com.eden.order.api.model.TOrder;
+import com.eden.order.constants.OrderStatusEnum;
+import com.eden.order.param.OrderParam;
+import com.eden.order.constants.MQConstants;
+import com.eden.order.mapper.TOrderMapper;
+import com.eden.order.model.TOrder;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -14,6 +14,7 @@ import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -42,12 +43,9 @@ public class OrderListener {
             log.info("listener success, message:{}", message);
             OrderParam orderParam = JSON.parseObject(msg, new TypeReference<OrderParam>() {});
             TOrder orderInfo = new TOrder();
-            orderInfo.setUserId(orderParam.getUserId());
-            orderInfo.setProductId(orderParam.getProductId());
-            orderInfo.setCreateTime(new Date());
-            orderInfo.setOrderId(orderParam.getOrderId());
+            BeanUtils.copyProperties(orderParam, orderInfo);
             orderInfo.setOrderStatus(OrderStatusEnum.CREATED_STATUS.getStatus());
-            orderInfo.setPurchaseAmount(orderParam.getNumber());
+            orderInfo.setCreateTime(new Date());
             orderMapper.insert(orderInfo);
 
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);

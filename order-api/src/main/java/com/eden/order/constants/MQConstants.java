@@ -1,4 +1,4 @@
-package com.eden.order.api.constants;
+package com.eden.order.constants;
 
 /**
  * @author chenqw

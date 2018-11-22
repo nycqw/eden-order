@@ -1,4 +1,4 @@
-package com.eden.order.api.model;
+package com.eden.order.model;
 
 import lombok.Getter;
 import lombok.Setter;

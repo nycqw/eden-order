@@ -1,6 +1,6 @@
-package com.eden.order.service.mapper;
+package com.eden.order.mapper;
 
-import com.eden.order.api.model.TOrder;
+import com.eden.order.model.TOrder;
 
 public interface TOrderMapper {
     int deleteByPrimaryKey(Long id);

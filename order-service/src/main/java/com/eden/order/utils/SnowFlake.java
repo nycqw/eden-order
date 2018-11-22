@@ -1,4 +1,4 @@
-package com.eden.order.service.utils;
+package com.eden.order.utils;
 
 /**
  * ID 生成器：snowflake java实现

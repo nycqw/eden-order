@@ -1,4 +1,4 @@
-package com.eden.order.api.domain;
+package com.eden.order.param;
 
 
 import lombok.Getter;
@@ -17,7 +17,7 @@ public class OrderParam implements Serializable {
 
     private Long productId;
 
-    private Integer number;
+    private Integer purchaseAmount;
 
     private Long userId;
 
