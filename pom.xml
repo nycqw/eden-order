@@ -74,22 +74,6 @@
                     <skipTests>true</skipTests>    <!--默认关掉单元测试 -->
                 </configuration>
             </plugin>
-            <!--<plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    &lt;!&ndash; 指定子模块找不到main方法的问题，指定该Main Class为全局的唯一入口 &ndash;&gt;
-                    <mainClass>OrderWebApplication</mainClass>
-                    <layout>ZIP</layout>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>&lt;!&ndash;可以把依赖的包都打包到生成的Jar包中&ndash;&gt;
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
         </plugins>
     </build>
 
