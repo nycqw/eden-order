@@ -1,4 +1,4 @@
-package com.eden.order.listener;
+package com.eden.order.service.listener;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -40,7 +40,7 @@ public class OrderListener {
     ))
     public void createOrder(String msg, Channel channel, Message message) {
         try {
-            log.info("listener success, message:{}", message);
+            log.info("监听成功, message:{}", message);
             OrderParam orderParam = JSON.parseObject(msg, new TypeReference<OrderParam>() {});
             TOrder orderInfo = new TOrder();
             BeanUtils.copyProperties(orderParam, orderInfo);
@@ -48,16 +48,16 @@ public class OrderListener {
             orderInfo.setCreateTime(new Date());
             orderMapper.insert(orderInfo);
 
-            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
             log.info("消费成功，可以从队列中删除");
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+
         } catch (IOException e) {
             try {
-                channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, false);
-                log.error("消费失败，丢弃消息",e);
+                log.error("消费失败，进入",e);
+                channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, true);
             } catch (IOException e1) {
                 log.error("丢弃失败",e1);
             }
         }
-
     }
 }
