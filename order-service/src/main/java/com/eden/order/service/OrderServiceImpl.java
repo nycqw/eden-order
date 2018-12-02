@@ -1,8 +1,7 @@
 package com.eden.order.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
+import com.eden.order.aspect.annotation.BusinessLog;
 import com.eden.order.constants.OrderStatusEnum;
 import com.eden.order.mapper.TOrderMapper;
 import com.eden.order.model.TOrder;
@@ -10,7 +9,6 @@ import com.eden.order.param.OrderParam;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -30,16 +28,16 @@ public class OrderServiceImpl implements IOrderService {
      * @return
      */
     @Override
-    public int createOrder(OrderParam orderParam) {
+    @BusinessLog(description = "订单创建")
+    public void createOrder(OrderParam orderParam) {
         TOrder orderInfo = orderMapper.selectByPrimaryKey(orderParam.getOrderId());
-        if (orderInfo != null) {
-            // 幂等设计，避免重试时重复创建
-            return 1;
+        // 幂等设计，避免重试时重复创建
+        if (orderInfo == null) {
+            orderInfo = new TOrder();
+            BeanUtils.copyProperties(orderParam, orderInfo);
+            orderInfo.setOrderStatus(OrderStatusEnum.CREATED_STATUS.getStatus());
+            orderInfo.setCreateTime(new Date());
+            orderMapper.insert(orderInfo);
         }
-        orderInfo = new TOrder();
-        BeanUtils.copyProperties(orderParam, orderInfo);
-        orderInfo.setOrderStatus(OrderStatusEnum.CREATED_STATUS.getStatus());
-        orderInfo.setCreateTime(new Date());
-        return orderMapper.insert(orderInfo);
     }
 }

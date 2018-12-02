@@ -21,11 +21,8 @@ public class OrderController {
 
     @RequestMapping("/create")
     public Result createOrder(@RequestBody OrderParam orderParam) {
-        int record = orderService.createOrder(orderParam);
-        if (record > 0) {
-            return Result.success();
-        }
-        return Result.fail("创建失败");
+        orderService.createOrder(orderParam);
+        return Result.success();
     }
 
 }

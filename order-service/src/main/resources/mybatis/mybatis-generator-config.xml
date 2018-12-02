@@ -22,7 +22,7 @@
         </javaTypeResolver>
         
         <!-- 数据模型配置 -->
-        <javaModelGenerator targetPackage="com.eden.order.orderintf.domain.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.eden.order.domain.model" targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
@@ -39,6 +39,6 @@
         
  		<!-- 修改tableName、domainObjectName -->
         <!-- 设置启动命令：Run -> Edit Configurations -> + -> Maven -> Command line -> mybatis-generator:generate -e-->
- 		<table tableName="t_order" domainObjectName="TOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+ 		<table tableName="t_business_log" domainObjectName="BusinessLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>

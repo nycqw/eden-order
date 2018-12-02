@@ -7,5 +7,5 @@ import com.eden.order.param.OrderParam;
  */
 public interface IOrderService {
 
-    int createOrder(OrderParam orderParam);
+    void createOrder(OrderParam orderParam);
 }

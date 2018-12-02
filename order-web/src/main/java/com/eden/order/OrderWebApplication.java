@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableDubbo
 @MapperScan("com.eden.order.mapper")
-@ComponentScan(basePackages = {"com.eden.order.controller", "com.eden.order.service"})
+@ComponentScan(basePackages = {"com.eden.order"})
 public class OrderWebApplication {
 
     public static void main(String[] args) {
