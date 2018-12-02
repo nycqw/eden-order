@@ -6,6 +6,7 @@ import com.eden.order.constants.OrderStatusEnum;
 import com.eden.order.mapper.TOrderMapper;
 import com.eden.order.model.TOrder;
 import com.eden.order.param.OrderParam;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +17,7 @@ import java.util.Date;
  * @since 2018/11/22
  */
 @Service
+@Slf4j
 public class OrderServiceImpl implements IOrderService {
 
     @Autowired
@@ -31,6 +33,7 @@ public class OrderServiceImpl implements IOrderService {
     @BusinessLog(description = "订单创建")
     public void createOrder(OrderParam orderParam) {
         TOrder orderInfo = orderMapper.selectByPrimaryKey(orderParam.getOrderId());
+        log.info("=========================create order begin");
         // 幂等设计，避免重试时重复创建
         if (orderInfo == null) {
             orderInfo = new TOrder();
@@ -38,6 +41,7 @@ public class OrderServiceImpl implements IOrderService {
             orderInfo.setOrderStatus(OrderStatusEnum.CREATED_STATUS.getStatus());
             orderInfo.setCreateTime(new Date());
             orderMapper.insert(orderInfo);
+            log.info("=========================create order success");
         }
     }
 }

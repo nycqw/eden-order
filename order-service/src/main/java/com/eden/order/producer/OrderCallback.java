@@ -1,10 +1,9 @@
-package com.eden.order.service.producer;
+package com.eden.order.producer;
 
 import com.alibaba.fastjson.JSON;
 import com.eden.order.constants.MQConstants;
 import com.eden.order.result.Result;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

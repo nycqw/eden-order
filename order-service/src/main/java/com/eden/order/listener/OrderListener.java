@@ -1,4 +1,4 @@
-package com.eden.order.service.listener;
+package com.eden.order.listener;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -6,7 +6,7 @@ import com.eden.order.constants.MQConstants;
 import com.eden.order.param.OrderParam;
 import com.eden.order.result.Result;
 import com.eden.order.service.IOrderService;
-import com.eden.order.service.producer.OrderCallback;
+import com.eden.order.producer.OrderCallback;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
