@@ -2,6 +2,8 @@ package com.eden.order.mapper;
 
 import com.eden.order.model.TOrder;
 
+import java.util.List;
+
 public interface TOrderMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -10,6 +12,8 @@ public interface TOrderMapper {
     int insertSelective(TOrder record);
 
     TOrder selectByPrimaryKey(Long id);
+
+    List<TOrder> selectTimeoutOrder();
 
     int updateByPrimaryKeySelective(TOrder record);
 
