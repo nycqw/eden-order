@@ -22,7 +22,7 @@ public class TOrder implements Serializable{
 
     private Double price;
 
-    private Integer purchaseAmount;
+    private Long purchaseAmount;
 
     private String mailingAddress;
 

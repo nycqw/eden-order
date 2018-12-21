@@ -17,7 +17,7 @@ public class OrderParam implements Serializable {
 
     private Long productId;
 
-    private Integer purchaseAmount;
+    private Long purchaseAmount;
 
     private Long userId;
 

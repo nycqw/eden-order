@@ -33,27 +33,33 @@ public class BusinessLogAspect {
     }
 
     @Around(value = "pointcut() && @annotation(businessLog)")
-    public void recordLog(ProceedingJoinPoint joinPoint, BusinessLog businessLog){
+    public Object recordLog(ProceedingJoinPoint joinPoint, BusinessLog businessLog){
+        Object result = null;
         try {
-            BusinessLogEntity businessLogEntity = new BusinessLogEntity();
-            StringBuilder param = getParam(joinPoint);
-            businessLogEntity.setParam(param.toString());
-            businessLogEntity.setType(businessLog.type());
-            businessLogEntity.setDescription(businessLog.description());
-            businessLogEntity.setCreateTime(new Date());
+            BusinessLogEntity businessLogEntity = getBusinessLogEntity(joinPoint, businessLog);
             businessLogMapper.insert(businessLogEntity);
 
             try {
-                joinPoint.proceed();
+                result = joinPoint.proceed();
+                businessLogEntity.setStatus(1);
             } catch (Throwable throwable) {
                 businessLogEntity.setStatus(-1);
             }
-            businessLogEntity.setStatus(1);
             businessLogMapper.updateByPrimaryKey(businessLogEntity);
         } catch (Exception e) {
             log.error("业务日志记录异常", e);
         }
+        return result;
+    }
 
+    private BusinessLogEntity getBusinessLogEntity(ProceedingJoinPoint joinPoint, BusinessLog businessLog) {
+        BusinessLogEntity businessLogEntity = new BusinessLogEntity();
+        StringBuilder param = getParam(joinPoint);
+        businessLogEntity.setParam(param.toString());
+        businessLogEntity.setType(businessLog.type());
+        businessLogEntity.setDescription(businessLog.description());
+        businessLogEntity.setCreateTime(new Date());
+        return businessLogEntity;
     }
 
     private StringBuilder getParam(JoinPoint joinPoint) {

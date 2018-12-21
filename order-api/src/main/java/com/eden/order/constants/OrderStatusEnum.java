@@ -13,7 +13,7 @@ public enum OrderStatusEnum {
 
     CREATED_STATUS(0,"订单创建"),
     COMPLETED_STATUS(1,"订单完成"),
-    CANCED_STATUS(2,"订单取消"),
+    CANCELED_STATUS(2,"订单取消"),
     TIMEOUT_STATUS(3,"订单超时");
 
     @Getter

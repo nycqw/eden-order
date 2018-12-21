@@ -7,5 +7,9 @@ import com.eden.order.param.OrderParam;
  */
 public interface IOrderService {
 
-    void createOrder(OrderParam orderParam);
+    Long createOrder(OrderParam orderParam);
+
+    void cancelOrder(OrderParam orderParam);
+
+    void confirmOrder(OrderParam orderParam);
 }

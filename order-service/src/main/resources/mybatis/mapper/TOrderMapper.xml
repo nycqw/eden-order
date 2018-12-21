@@ -9,7 +9,7 @@
     <result column="SERIAL_NUMBER" property="serialNumber" jdbcType="BIGINT" />
     <result column="product_id" property="productId" jdbcType="BIGINT" />
     <result column="price" property="price" jdbcType="DOUBLE" />
-    <result column="purchase_amount" property="purchaseAmount" jdbcType="INTEGER" />
+    <result column="purchase_amount" property="purchaseAmount" jdbcType="BIGINT" />
     <result column="mailing_address" property="mailingAddress" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
     <result column="UPDATE_time" property="updateTime" jdbcType="TIMESTAMP" />
@@ -35,7 +35,7 @@
       CREATE_TIME, UPDATE_time)
     values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{orderStatus,jdbcType=INTEGER}, 
       #{userId,jdbcType=BIGINT}, #{serialNumber,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, 
-      #{price,jdbcType=DOUBLE}, #{purchaseAmount,jdbcType=INTEGER}, #{mailingAddress,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DOUBLE}, #{purchaseAmount,jdbcType=BIGINT}, #{mailingAddress,jdbcType=VARCHAR},
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.eden.order.model.TOrder" >
@@ -133,7 +133,7 @@
         price = #{price,jdbcType=DOUBLE},
       </if>
       <if test="purchaseAmount != null" >
-        purchase_amount = #{purchaseAmount,jdbcType=INTEGER},
+        purchase_amount = #{purchaseAmount,jdbcType=BIGINT},
       </if>
       <if test="mailingAddress != null" >
         mailing_address = #{mailingAddress,jdbcType=VARCHAR},
@@ -155,7 +155,7 @@
       SERIAL_NUMBER = #{serialNumber,jdbcType=BIGINT},
       product_id = #{productId,jdbcType=BIGINT},
       price = #{price,jdbcType=DOUBLE},
-      purchase_amount = #{purchaseAmount,jdbcType=INTEGER},
+      purchase_amount = #{purchaseAmount,jdbcType=BIGINT},
       mailing_address = #{mailingAddress,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       UPDATE_time = #{updateTime,jdbcType=TIMESTAMP}

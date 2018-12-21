@@ -21,8 +21,8 @@ public class OrderController {
 
     @RequestMapping("/create")
     public Result createOrder(@RequestBody OrderParam orderParam) {
-        orderService.createOrder(orderParam);
-        return Result.success();
+        Long orderId = orderService.createOrder(orderParam);
+        return Result.success(orderId);
     }
 
 }
