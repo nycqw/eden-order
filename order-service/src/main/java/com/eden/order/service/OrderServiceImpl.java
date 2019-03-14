@@ -14,6 +14,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 
@@ -31,6 +32,9 @@ public class OrderServiceImpl implements IOrderService {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     /**
      * 异步订单创建为满足重试机制需进行幂等设计
      *
@@ -44,7 +48,8 @@ public class OrderServiceImpl implements IOrderService {
         // 幂等设计，避免重试时重复创建
         if (orderInfo == null) {
             orderInfo = new TOrder();
-            long orderId = SnowFlake.generatingId();
+            //long orderId = SnowFlake.generatingId();
+            Long orderId = restTemplate.getForObject("http://localhost:8080/id/next/number?bizCode=1", Long.class);
             BeanUtils.copyProperties(orderParam, orderInfo);
             orderInfo.setOrderStatus(OrderStatusEnum.CREATED_STATUS.getStatus());
             orderInfo.setCreateTime(new Date());
