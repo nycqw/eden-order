@@ -13,7 +13,7 @@
         
         <!-- 数据库配置 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://106.14.187.183:3306/eden?characterEncoding=utf8"
+                        connectionURL="jdbc:mysql://106.12.79.78:3306/eden?characterEncoding=utf8"
                         userId="root" password="Slc13092271475@">
         </jdbcConnection>
         

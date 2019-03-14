@@ -29,6 +29,7 @@
         <order.service.version>0.0.1-SNAPSHOT</order.service.version>
         <order.api.version>0.0.1-SNAPSHOT</order.api.version>
         <order.web.version>0.0.1-SNAPSHOT</order.web.version>
+        <swagger.version>2.9.2</swagger.version>
     </properties>
 
     <dependencies>
@@ -61,6 +62,18 @@
                 <groupId>com.eden.order</groupId>
                 <artifactId>order-web</artifactId>
                 <version>${order.web.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

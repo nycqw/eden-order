@@ -38,7 +38,7 @@ public class OrderServiceImpl implements IOrderService {
      * @return
      */
     @Override
-    @BusinessLog(description = "订单创建")
+    //@BusinessLog(description = "订单创建")
     public Long createOrder(OrderParam orderParam) {
         TOrder orderInfo = orderMapper.selectByPrimaryKey(orderParam.getOrderId());
         // 幂等设计，避免重试时重复创建

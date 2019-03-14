@@ -29,10 +29,10 @@
   <select id="selectTimeoutOrder" resultMap="BaseResultMap" >
     <![CDATA[
     select
-    <include refid="Base_Column_List" />
+    ID, ORDER_ID, ORDER_STATUS, USER_ID, SERIAL_NUMBER, product_id, price, purchase_amount, mailing_address, CREATE_TIME, UPDATE_time
     from t_order
     where ORDER_STATUS = 0
-    and create_time < SUBDATE(NOW(),INTERVAL 10 MINUTE)
+    and create_time <= SUBDATE(NOW(),INTERVAL 10 MINUTE)
     ]]>
   </select>
 

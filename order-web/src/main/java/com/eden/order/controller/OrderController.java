@@ -4,9 +4,7 @@ import com.eden.order.param.OrderParam;
 import com.eden.order.result.Result;
 import com.eden.order.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author chenqw
@@ -19,7 +17,8 @@ public class OrderController {
     @Autowired
     private IOrderService orderService;
 
-    @RequestMapping("/create")
+    @PostMapping("/create")
+    @ResponseBody
     public Result createOrder(@RequestBody OrderParam orderParam) {
         Long orderId = orderService.createOrder(orderParam);
         return Result.success(orderId);
